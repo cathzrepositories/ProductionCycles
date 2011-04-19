@@ -35,13 +35,16 @@ public class DAO extends DAOBase
     	ofy.delete(keys);
     }
     
-    public List<Teil> createAllTeil(List<Teil> teile)
+    public void createTeil(Teil t)
     {
-    	//ofy.put();
-    	
-		return null;
-    	
+    	ofy.put(t);
     }
+    
+    public void createAllTeil(List<Teil> t)
+    {
+    	ofy.put(t);
+    }
+    
 
     
 }
