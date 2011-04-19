@@ -1,0 +1,2 @@
+serviceClass: de.hska.client.GreetingService
+path: 1942E72FAF03388443EE848AEACA50BF.gwt.rpc

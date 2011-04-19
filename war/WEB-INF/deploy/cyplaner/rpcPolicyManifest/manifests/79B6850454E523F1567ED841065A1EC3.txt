@@ -1,0 +1,2 @@
+serviceClass: de.hska.client.SetupService
+path: 1075B29124A0DCCC2EA795772F8A2C67.gwt.rpc
