@@ -1,5 +1,9 @@
 package de.hska.client;
 
+import de.hska.client.remote.GreetingService;
+import de.hska.client.remote.GreetingServiceAsync;
+import de.hska.client.remote.SetupService;
+import de.hska.client.remote.SetupServiceAsync;
 import de.hska.domain.Teil;
 import de.hska.shared.FieldVerifier;
 import com.google.gwt.core.client.EntryPoint;
@@ -22,7 +26,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
-public class Planner implements EntryPoint {
+public class CyPlanner implements EntryPoint {
 	/**
 	 * The message displayed to the user when the server cannot be reached or
 	 * returns an error.

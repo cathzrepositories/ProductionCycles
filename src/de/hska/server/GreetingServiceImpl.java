@@ -1,6 +1,6 @@
 package de.hska.server;
 
-import de.hska.client.GreetingService;
+import de.hska.client.remote.GreetingService;
 import de.hska.shared.FieldVerifier;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 

@@ -1,6 +1,5 @@
 package de.hska.server.persistence;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.googlecode.objectify.Objectify;
@@ -25,22 +24,26 @@ public class DAO extends DAOBase
     	return teilQuery.list();   	
     }
     
-    public void deleteAllTeil(List<Teil> teile)
+    public void deleteTeil(List<Teil> teile)
     {
-    	ArrayList<Long> keys = new ArrayList<Long>();
-    	for(Teil t:teile) {
-    		keys.add(t.getKey());
-    	}
-    	
-    	ofy.delete(keys);
+    	ofy.delete(teile);
     }
+    public void deleteTeil(Teil teil)
+    {
+    	ofy.delete(teil.getKey());
+    }
+    
     
     public void createTeil(Teil t)
     {
     	ofy.put(t);
     }
+    public void createTeil(List<Teil> t)
+    {
+    	ofy.put(t);
+    }
     
-    public void createAllTeil(List<Teil> t)
+    public void updateTeil(Teil t)
     {
     	ofy.put(t);
     }

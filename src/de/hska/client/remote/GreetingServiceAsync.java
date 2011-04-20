@@ -1,4 +1,4 @@
-package de.hska.client;
+package de.hska.client.remote;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 

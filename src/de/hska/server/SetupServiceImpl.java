@@ -3,16 +3,11 @@ package de.hska.server;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import com.google.appengine.api.datastore.QueryResultIterable;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import com.googlecode.objectify.Key;
-import com.googlecode.objectify.Objectify;
-import com.googlecode.objectify.ObjectifyService;
-import com.googlecode.objectify.Query;
 
-import de.hska.client.SetupService;
+import de.hska.client.remote.SetupService;
 import de.hska.domain.Teil;
+import de.hska.server.persistence.DAO;
 
 
 /*
@@ -26,18 +21,14 @@ public class SetupServiceImpl extends RemoteServiceServlet implements
 	SetupService{
 
 	public Teil setupService() throws IllegalArgumentException {
-		//Das gehšrt eigentlich wo anderst hin....init oder so
-		ObjectifyService.register(Teil.class);
+		DAO dao = new DAO();
 		
 		
-		Objectify ofy = ObjectifyService.begin();
 		//Alle bestehenden Teile holen		
-		Query<Teil> teilQuery = ofy.query(Teil.class);
+		List<Teil> teile = dao.getAllTeil();
 		//Und lšschen
-	    if (teilQuery.count()>0) {
-	    	System.out.println("Yeah it's not empty");
-	    	QueryResultIterable<Key<Teil>> keys = teilQuery.fetchKeys();
-	    	ofy.delete(keys);
+	    if (teile.size()>0) {
+	    	dao.deleteTeil(teile);
 	    }  
 		
 	    //Neuen Teile erstellen
@@ -48,16 +39,17 @@ public class SetupServiceImpl extends RemoteServiceServlet implements
 	    teile_new.add(new Teil(2, "P", "Damenfahrrad", null, null, null, null, null));
 	    teile_new.add(new Teil(3, "P", "Herrenrad", null, null, null, null, null));
 		//Teile persistieren
-		ofy.put(teile_new);
+	    dao.createTeil(teile);
 		
 		
 	    //Test	
-		teilQuery = ofy.query(Teil.class);
-		for (Teil t: teilQuery) {
+	    teile = null;
+	    teile = dao.getAllTeil();
+		for (Teil t: teile) {
 		    System.out.println(t.toString());
 		}
 		
-		return teilQuery.list().get(0);
+		return teile.get(0);
 	}
 
 }
